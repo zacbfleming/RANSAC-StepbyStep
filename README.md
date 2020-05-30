@@ -9,3 +9,8 @@ the right) for each features detected in TransA.jpg (green dotted pixels in the 
 from the feature on the left to the location in the righthand image the app believes is the same location. Once all 
 matching features have been preocessed the app produces the homography for the stereo images. 
 
+To Run
+Copy FeatMatchRANSAC.py / TransA.jpg, / TransB.jpg to the same folder and run python3 FeatMatchRansac.py
+
+expect it to run about an hour or more. 
+
