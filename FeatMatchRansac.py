@@ -1,10 +1,10 @@
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
-simA1 =cv2.imread('/home/artichoke/A_Udacity/Computer Vision/ps4/input/transA.jpg')
-simA = cv2.imread('/home/artichoke/A_Udacity/Computer Vision/ps4/input/transA.jpg')
-simB1 = cv2.imread('/home/artichoke/A_Udacity/Computer Vision/ps4/input/transB.jpg')
-simB = cv2.imread('/home/artichoke/A_Udacity/Computer Vision/ps4/input/transB.jpg')
+simA1 =cv2.imread('transA.jpg')
+simA = cv2.imread('transA.jpg')
+simB1 = cv2.imread('transB.jpg')
+simB = cv2.imread('transB.jpg')
 
 
 ###returns an image with corners marked in red (image) and local maxima values of corner locations
