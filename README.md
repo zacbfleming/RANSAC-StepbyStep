@@ -14,3 +14,4 @@ Copy FeatMatchRANSAC.py / TransA.jpg, / TransB.jpg to the same folder and run py
 
 expect it to run about an hour or more. 
 
+ransac.png shows a feature misdetected but shows the general progression of the app.
