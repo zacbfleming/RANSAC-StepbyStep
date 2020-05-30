@@ -20,33 +20,6 @@ def H(image):
     cv2.destroyAllWindows()
     return image, dst
 
-### a more accurate version of above
-def Hacc(image):
-    cv2.imshow('Hacc',image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-    gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-    gray = np.float32(gray)
-    dst = cv2.cornerHarris(gray,2,3,0.04)
-    dst = cv2.dilate(dst,None)
-    ret, dst = cv2.threshold(dst,0.01*dst.max(),255,0)
-    dst = np.uint8(dst)
-    ret, labels, stats, centroids = cv2.connectedComponentsWithStats(dst)
-    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 100, 0.001)
-    corners = cv2.cornerSubPix(gray,np.float32(centroids),(5,5),(-1,-1),criteria)
-    
-    res = np.hstack((centroids,corners))
-    res = np.int0(res)
-    image[res[:,1],res[:,0]]=[0,0,255]
-    image[res[:,3],res[:,2]] = [0,255,0]
-    cv2.imwrite('subpix.png',image)
-    subpix = cv2.imread('subpix.png')
-    cv2.imshow('subpix.png',subpix)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-    return subpix
-
-
 def drawlines(img1, img2, ptsa, ptsb):
     FONT = cv2.FONT_HERSHEY_SIMPLEX
     FONT_SCALE = 1.0
@@ -55,7 +28,6 @@ def drawlines(img1, img2, ptsa, ptsb):
     label_color = (0, 0, 0)
     img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
     img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
-    #r, c = img1g.shape[0], img1g.shape[1]
     img1 = cv2.cvtColor(img1, cv2.COLOR_GRAY2BGR)
     img2 = cv2.cvtColor(img2, cv2.COLOR_GRAY2BGR)
     
@@ -72,7 +44,6 @@ def drawlines(img1, img2, ptsa, ptsb):
         for pt2 in ptsb:
             
             bc+=1
-            #print('location of pt1, pt2', pt1, pt2)
             pixA = img1[int(pt1[0]), int(pt1[1])]
             pixB= img2[int(ptsb[bc][0]), int(ptsb[bc][1])]
             #print('pixel color', pixA[0], pixB[0])
@@ -87,7 +58,7 @@ def drawlines(img1, img2, ptsa, ptsb):
             
             vis2 = cv2.circle(vis2, (int(pt1[1]), int(pt1[0])), 1, (0,255,0), 2)
             
-            #print('pt1x, y', x1, y1)
+            
             if pixA[0] == pixB[0]:# and pix1G == pix2G and pix1R == pix2R:
                 cv2.putText(vis2, text1, (50,80), 2, 2,color=(2,250,0), thickness=2)
                 cv2.putText(vis2, text3, (50,150), 2, 2,color=(2,250,0), thickness=2)
@@ -109,12 +80,7 @@ def drawlines(img1, img2, ptsa, ptsb):
     cv2.imshow('vis', vis2)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-                
-            
-    
-                
-            #img1 = cv2.circle(img1, tuple(pt1), 5, color, -1)
-            #img2 = cv2.circle(img2, tuple(pt2), 5,color, -1)
+   
     return vis
 
 ### uses H() above to make an x, y list of corners detected, returns Alist and displays all the corners found in green to confirm corners found with H()
