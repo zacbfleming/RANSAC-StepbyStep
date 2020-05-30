@@ -62,8 +62,8 @@ def drawlines(img1, img2, ptsa, ptsb):
             if pixA[0] == pixB[0]:# and pix1G == pix2G and pix1R == pix2R:
                 cv2.putText(vis2, text1, (50,80), 2, 2,color=(2,250,0), thickness=2)
                 cv2.putText(vis2, text3, (50,150), 2, 2,color=(2,250,0), thickness=2)
-                cv2.putText(vis2, text2, (50,200), 2, 2,color=(0,0,255), thickness=2)
-                cv2.putText(vis2, text4, (50,270), 2, 2,color=(0,0,255), thickness=2)
+                cv2.putText(vis2, text2, (50,200), 2, 2,color=(255,0,0), thickness=2)
+                cv2.putText(vis2, text4, (50,270), 2, 2,color=(255,0,0), thickness=2)
                 color = tuple(np.random.randint(0,255,3).tolist())
                 vis2 = cv2.line(vis2, (int(x0), int(y0)), (int(x1+640), int(y1)), color, 2)
                 cv2.imshow('vis', vis2)
